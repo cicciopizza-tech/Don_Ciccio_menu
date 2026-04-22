@@ -17,8 +17,8 @@
   --nav-bg:#1c1008;--nav-text:#f0e0c0;
   /* ── Escala tipográfica — 3 tamaños, adaptativos al sistema ── */
   --fs-s:.75rem;   /* etiquetas, pills, footer */
-  --fs-m:.95rem;    /* nombres ingredientes, notas, nav */
-  --fs-l:1.125rem;     /* descripciones y párrafos de lectura */
+  --fs-m:.9rem;    /* nombres ingredientes, notas, nav */
+  --fs-l:1rem;     /* descripciones y párrafos de lectura */
   /* ── PILLS DE SABOR — cada uno con su propio universo ── */
   --c-crem:#7a5808;--b-crem:rgba(122,88,8,.1);
   --c-int:#5a1060;--b-int:rgba(90,16,96,.1);
@@ -68,13 +68,13 @@ body{background:var(--p);color:var(--ink);font-family:'EB Garamond',Georgia,seri
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:.5}
 
 /* NAV */
-.nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);display:flex;justify-content:center;align-items:center;border-bottom:2px solid var(--gold);transition:background .35s}
-.nb{background:none;border:none;color:var(--nav-text);font-family:'EB Garamond',serif;font-size:var(--fs-l);letter-spacing:.2em;text-transform:uppercase;padding:.9rem 1.5rem;cursor:pointer;position:relative;transition:color .2s;white-space:nowrap}
+.nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);display:flex;justify-content:center;align-items:center;border-bottom:2px solid var(--gold);transition:background .35s;padding:0 46px}
+.nb{background:none;border:none;color:var(--nav-text);font-family:'EB Garamond',serif;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;padding:.75rem .85rem;cursor:pointer;position:relative;transition:color .2s;white-space:nowrap;flex-shrink:0}
 .nb::after{content:'';position:absolute;bottom:0;left:50%;right:50%;height:2px;background:var(--gl);transition:left .25s,right .25s}
 .nb.active{color:var(--gl)}.nb.active::after{left:0;right:0}
 
 /* BOTÓN MODO */
-.theme-btn{position:absolute;right:.85rem;background:none;border:1px solid rgba(212,184,122,.35);color:var(--gl);font-size:var(--fs-l);width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;border-radius:50%;transition:border-color .2s,color .2s,transform .3s;flex-shrink:0}
+.theme-btn{position:absolute;right:.85rem;background:none;border:1px solid rgba(212,184,122,.35);color:var(--gl);font-size:.85rem;width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;border-radius:50%;transition:border-color .2s,color .2s,transform .3s;flex-shrink:0}
 .theme-btn:hover{border-color:var(--gl);transform:rotate(20deg)}
 
 .view{display:none}.view.active{display:block}
@@ -199,6 +199,38 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 
 @keyframes eI{to{opacity:1;transform:translateY(0)}}
 
+/* ── COMBOS ── */
+.cv{min-height:calc(100vh - 50px);display:flex;flex-direction:column;align-items:center;padding:.75rem 1rem 5rem;position:relative;z-index:1}
+.cm{width:100%;max-width:480px}
+.cmh{text-align:center;padding:2rem 1.5rem 1.5rem;margin-bottom:1.2rem}
+.cmh .ey{font-size:var(--fs-s);letter-spacing:.4em;text-transform:uppercase;color:var(--mut);display:block;margin-bottom:.5rem}
+.cmh .mt{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,8vw,3.5rem);font-weight:300;color:var(--ink);line-height:.95}
+.cmh .ms{font-size:var(--fs-l);font-style:italic;color:var(--mut);margin-top:.7rem}
+.cbox{background:var(--cream);border:1px solid var(--bdr);padding:1.5rem 1.4rem 1.3rem;margin-bottom:1rem;position:relative;transition:background .35s}
+.cbox::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--red)}
+.ctag{font-size:var(--fs-s);letter-spacing:.3em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:.4rem}
+.cnm{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,5vw,1.9rem);font-weight:600;color:var(--ink);line-height:1;margin-bottom:.3rem}
+.cdesc{font-size:var(--fs-l);color:var(--inks);font-style:italic;line-height:1.7;margin-bottom:.9rem}
+.cprow{display:flex;align-items:baseline;justify-content:space-between;border-top:1px solid var(--bdr);padding-top:.8rem;gap:.5rem}
+.cpbef{font-family:'Cormorant Garamond',serif;font-size:var(--fs-m);color:var(--mut);text-decoration:line-through}
+.cpric{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;color:var(--red);line-height:1}
+.cpric sup{font-size:.5em;vertical-align:super;color:var(--mut);font-weight:400}
+.csave{font-size:var(--fs-s);letter-spacing:.08em;text-transform:uppercase;color:#2a7a3a;background:rgba(42,122,58,.08);border:1px solid rgba(42,122,58,.25);padding:.2rem .55rem;border-radius:2px}
+.clist{list-style:none;margin:.5rem 0 .9rem;padding:0;border-left:1px solid var(--bdr);padding-left:.9rem}
+.clist li{font-size:var(--fs-l);color:var(--inks);font-style:italic;line-height:1.8}
+.clist li em{font-style:normal;color:var(--mut);font-size:var(--fs-s);letter-spacing:.04em}
+
+/* ── PIE DE PÁGINA ── */
+.site-footer{background:var(--nav-bg);color:var(--nav-text);text-align:center;padding:2rem 1.5rem 2.5rem;margin-top:auto}
+.footer-brand{font-family:'Cormorant Garamond',serif;font-size:1.3rem;letter-spacing:.15em;color:var(--gl);margin-bottom:.3rem}
+.footer-sub{font-size:var(--fs-s);letter-spacing:.2em;text-transform:uppercase;color:rgba(240,224,192,.45);margin-bottom:1.4rem}
+.footer-links{display:flex;justify-content:center;gap:1.5rem;margin-bottom:1.2rem}
+.footer-link{display:flex;flex-direction:column;align-items:center;gap:.3rem;text-decoration:none;color:rgba(240,224,192,.65);transition:color .2s}
+.footer-link:hover{color:var(--gl)}
+.footer-link svg{width:22px;height:22px}
+.footer-link span{font-size:var(--fs-s);letter-spacing:.1em;text-transform:uppercase}
+.footer-copy{font-size:var(--fs-s);color:rgba(240,224,192,.3);letter-spacing:.15em;text-transform:uppercase}
+
 /* ── RESPONSIVE ── */
 
 /* Móvil chico (< 380px) — pantallas pequeñas, máxima legibilidad */
@@ -240,6 +272,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 <body>
 
 <nav class="nav">
+  <button class="nb" onclick="showV('combos')" id="btn-combos">Combos</button>
   <button class="nb active" onclick="showV('full')" id="btn-full">Menú</button>
   <button class="nb" onclick="showV('descubre')" id="btn-descubre">Descubre</button>
   <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="Cambiar tema">☽</button>
@@ -250,20 +283,112 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   <div class="fm"><div class="mf">
     <div class="co tl"></div><div class="co tr"></div><div class="co bl"></div><div class="co br"></div>
     <div class="mh">
-      <span class="ey">Pizzería Artesanal · Sahagún, Hgo</span>
+      <span class="ey">Pizzería Artesanal · Hidalgo</span>
       <div class="mt">Don Ciccio<span>Menú Oficial</span></div>
-      <p class="ms">Masa Neonapolitana · Ingredientes seleccionados · Don Ciccio inspira, nosotros amasamos😼</p>
+      <p class="ms">Masa napolitana · Ingredientes seleccionados · Hecho con fuego</p>
       <div class="orn">✦</div>
     </div>
-    <div class="pe"><div class="et"><div class="et-left"><span class="en">I</span><span class="enm">La D'Ciccio</span></div><span class="ep">$189</span></div><span class="etg">La firma del Don.</span><p class="edc">Crema de ajo, cinco quesos selectos — mozzarella, gouda, manchego, oaxaca y queso crema — nuez tostada y un velo final de miel de abeja 100% natural.</p></div>
-    <div class="pe"><div class="et"><div class="et-left"><span class="en">II</span><span class="enm">La Piccante al Miele</span></div><span class="ep">$179</span></div><span class="etg">Italia encuentra el fuego hidalguense.</span><p class="edc">Salsa di pomodoro, mozzarella fresca, Salami Genoa y un acabado de Hot Honey artesanal. Dulce, ahumado y con el calor justo.</p></div>
-    <div class="pe"><div class="et"><div class="et-left"><span class="en">III</span><span class="enm">La Boscaiola</span></div><span class="ep">$169</span></div><span class="etg">Sabor a bosque y tradición.</span><p class="edc">Salsa di pomodoro, mozzarella, champiñones salteados, chorizo artesanal y aceituna negra. Una pizza rústica de carácter intenso.</p></div>
-    <div class="pe"><div class="et"><div class="et-left"><span class="en">IV</span><span class="enm">Quattro Formaggi</span></div><span class="ep">$159</span></div><span class="etg">El abrazo de los cuatro quesos.</span><p class="edc">Velo ligero de salsa di pomodoro, mozzarella, gouda, manchego y oaxaca gratinados en perfecta armonía. Cremosa, elegante y adictiva.</p></div>
-    <div class="pe"><div class="et"><div class="et-left"><span class="en">V</span><span class="enm">Margherita al Basilico</span></div><span class="ep">$139</span></div><span class="etg">El clásico que nunca falla.</span><p class="edc">Salsa di pomodoro, mozzarella fresca y un hilo de aceite de oliva virgen. El sello de calidad de Don Ciccio.</p></div>
-    <div class="pe"><div class="et"><div class="et-left"><span class="en">VI</span><span class="enm">Senza Fronzoli</span></div><span class="ep">$129</span></div><span class="etg">La pureza del buen ingrediente.</span><p class="edc">Aceite de ajo confitado, mozzarella, queso oaxaca gratinado, jamón de pierna seleccionado y cebolla asada. Sin adornos, solo sabor honesto.</p></div>
-    
-    <div class="mfoot"> Don Ciccio · Pizzería Artesanal · Sahagún, Hgo</div>
+    <div class="pe"><div class="et"><div class="et-left"><span class="en">I</span><span class="enm">La D'Ciccio</span></div><span class="ep">$199</span></div><span class="etg">La firma del Don.</span><p class="edc">Crema de ajo, cinco quesos selectos — mozzarella, gouda, manchego, oaxaca y queso crema — nuez tostada y un velo final de miel de abeja 100% natural.</p></div>
+    <div class="pe"><div class="et"><div class="et-left"><span class="en">II</span><span class="enm">La Piccante al Miele</span></div><span class="ep">$189</span></div><span class="etg">Italia encuentra el fuego hidalguense.</span><p class="edc">Salsa di pomodoro, mozzarella fresca, Salami Genoa y un acabado de Hot Honey artesanal. Dulce, ahumado y con el calor justo.</p></div>
+    <div class="pe"><div class="et"><div class="et-left"><span class="en">III</span><span class="enm">La Boscaiola</span></div><span class="ep">$179</span></div><span class="etg">Sabor a bosque y tradición.</span><p class="edc">Salsa di pomodoro, mozzarella, champiñones salteados, chorizo artesanal y aceituna negra. Una pizza rústica de carácter intenso.</p></div>
+    <div class="pe"><div class="et"><div class="et-left"><span class="en">IV</span><span class="enm">Quattro Formaggi</span></div><span class="ep">$169</span></div><span class="etg">El abrazo de los cuatro quesos.</span><p class="edc">Velo ligero de salsa di pomodoro, mozzarella, gouda, manchego y oaxaca gratinados en perfecta armonía. Cremosa, elegante y adictiva.</p></div>
+    <div class="pe"><div class="et"><div class="et-left"><span class="en">V</span><span class="enm">Pepperoni</span></div><span class="ep">$169</span></div><span class="etg">El clásico con carácter.</span><p class="edc">Salsa di pomodoro, mozzarella fresca y pepperoni seleccionado. Todo el sabor de la Margherita con ese toque ahumado y especiado que lo eleva.</p></div>
+    <div class="pe"><div class="et"><div class="et-left"><span class="en">VI</span><span class="enm">Margherita</span></div><span class="ep">$149</span></div><span class="etg">El clásico que nunca falla.</span><p class="edc">Salsa di pomodoro, mozzarella fresca y un hilo de aceite de oliva virgen. El sello de calidad de Don Ciccio.</p></div>
+    <div class="pe"><div class="et"><div class="et-left"><span class="en">VII</span><span class="enm">Senza Fronzoli</span></div><span class="ep">$139</span></div><span class="etg">La pureza del buen ingrediente.</span><p class="edc">Aceite de ajo confitado, mozzarella, queso oaxaca gratinado, jamón de pierna seleccionado y cebolla asada. Sin adornos, solo sabor honesto.</p></div>
+    <div class="mfoot">Don Ciccio · Pizzería Artesanal · Hidalgo, México</div>
   </div></div>
+  <footer class="site-footer">
+    <div class="footer-brand">Don Ciccio</div>
+    <div class="footer-sub">Pizzería Artesanal · Hidalgo, México</div>
+    <div class="footer-links">
+      <a href="https://instagram.com/TU_USUARIO" class="footer-link" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg>
+        <span>Instagram</span>
+      </a>
+      <a href="https://wa.me/527001234567" class="footer-link" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        <span>WhatsApp</span>
+      </a>
+      <a href="tel:+527001234567" class="footer-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.9a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span>Teléfono</span>
+      </a>
+    </div>
+    <div class="footer-copy">© Don Ciccio · Todos los derechos reservados</div>
+  </footer>
+</div>
+
+<!-- COMBOS -->
+<div class="view" id="view-combos">
+  <div class="cv">
+    <div class="cm">
+      <div class="cmh">
+        <span class="ey">Don Ciccio · Ofertas</span>
+        <div class="mt">Combos<span>Pide más, paga menos</span></div>
+      </div>
+
+      <div class="cbox">
+        <span class="ctag">Combo I</span>
+        <div class="cnm">Capolavoro D'Ciccio</div>
+        <p class="cdesc">Las creaciones más icónicas de la casa, juntas en su mejor versión.</p>
+        <ul class="clist"><li>La D'Ciccio</li><li>La Piccante al Miele</li></ul>
+        <div class="cprow">
+          <div class="cpric"><sup>$</sup>369</div>
+        </div>
+      </div>
+
+      <div class="cbox">
+        <span class="ctag">Combo II</span>
+        <div class="cnm">Due Mondi</div>
+        <p class="cdesc">Contrastes que se entienden a la perfección.</p>
+        <ul class="clist"><li>1 pizza premium <em>(D'Ciccio o Piccante al Miele)</em></li><li>1 pizza clásica <em>(Margherita o Senza Fronzoli)</em></li></ul>
+        <div class="cprow">
+          <div class="cpric"><sup>$</sup>319</div>
+
+        </div>
+      </div>
+
+      <div class="cbox">
+        <span class="ctag">Combo III</span>
+        <div class="cnm">Gran Banchetto</div>
+        <p class="cdesc">Una mesa generosa para compartir como se debe.</p>
+        <ul class="clist"><li>Boscaiola</li><li>Quattro Formaggi</li><li>Margherita al Basilico</li></ul>
+        <div class="cprow">
+          <div class="cpric"><sup>$</sup>479</div>
+        </div>
+      </div>
+
+      <div class="cbox">
+        <span class="ctag">Combo IV</span>
+        <div class="cnm">Il Classico</div>
+        <p class="cdesc">La esencia de lo simple, hecha con respeto.</p>
+        <ul class="clist"><li>Margherita al Basilico</li><li>Senza Fronzoli</li></ul>
+        <div class="cprow">
+          <div class="cpric"><sup>$</sup>269</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <footer class="site-footer">
+    <div class="footer-brand">Don Ciccio</div>
+    <div class="footer-sub">Pizzería Artesanal · Hidalgo, México</div>
+    <div class="footer-links">
+      <a href="https://instagram.com/TU_USUARIO" class="footer-link" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg>
+        <span>Instagram</span>
+      </a>
+      <a href="https://wa.me/527001234567" class="footer-link" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        <span>WhatsApp</span>
+      </a>
+      <a href="tel:+527001234567" class="footer-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.9a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span>Teléfono</span>
+      </a>
+    </div>
+    <div class="footer-copy">© Don Ciccio · Todos los derechos reservados</div>
+  </footer>
 </div>
 
 
@@ -275,8 +400,8 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
       <!-- Controls above the card -->
       <div class="dctrl">
         <button class="dcb" id="dPrev" onclick="navD(-1)">‹</button>
-        <div class="dtrk"><div class="dtrk-f" id="dTrkF" style="width:16.6%"></div></div>
-        <span class="dctr" id="dCtr">01 / 06</span>
+        <div class="dtrk"><div class="dtrk-f" id="dTrkF" style="width:14.2%"></div></div>
+        <span class="dctr" id="dCtr">01 / 07</span>
         <button class="dcb" id="dNext" onclick="navD(1)">›</button>
       </div>
       <div class="dtr" id="dTrack">
@@ -316,7 +441,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
         </div><!-- /sh -->
         <div class="sdv">✦</div>
         <div class="svd"><span class="svl">El bocado</span><div class="svn">Cremoso → Intenso<br><em>→ Crujiente → Dulce</em></div><p class="svds">Esta es la que el Don pedía cuando llegaba cansado. Cinco quesos que se funden sin pelear, la nuez que aparece justo cuando menos lo esperas, y ese hilo de miel al final que lo convierte todo en un abrazo. Calienta por dentro.</p><div class="fa"><span class="fp fp-crem">Cremoso</span><span class="fpa">→</span><span class="fp fp-int">Intenso</span><span class="fpa">→</span><span class="fp fp-cruj">Crujiente</span><span class="fpa">→</span><span class="fp fp-dulc">Dulce</span></div></div>
-        <div class="spr"><div class="spp"><sup>$</sup>189</div><div class="sloc">Pizzería Artesanal<br> Sahagún, Hgo </div></div>
+        <div class="spr"><div class="spp"><sup>$</sup>199</div><div class="sloc">Pizzería Artesanal<br>Hidalgo, México</div></div>
       </div>
 
       <!-- ★ 2 LA PICCANTE AL MIELE -->
@@ -353,7 +478,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
         </div><!-- /sh -->
         <div class="sdv">✦</div>
         <div class="svd"><span class="svl">El bocado</span><div class="svn">Crujiente → Herbal<br><em>→ Dulce → Picante</em></div><p class="svds">Es de esas pizzas que te hacen hablar. El salami llega con esa personalidad herbal que no se calla, el queso lo abraza, y cuando ya crees que terminó, el Hot Honey artesanal se asoma — dulce, cálido, con un picor que se queda contigo un ratito más. Buena compañía.</p><div class="fa"><span class="fp fp-cruj">Crujiente</span><span class="fpa">→</span><span class="fp fp-herb">Herbal</span><span class="fpa">→</span><span class="fp fp-dulc">Dulce</span><span class="fpa">→</span><span class="fp fp-pic">Picante</span></div></div>
-        <div class="spr"><div class="spp"><sup>$</sup>179</div><div class="sloc">Pizzería Artesanal<br> Sahagún, Hgo </div></div>
+        <div class="spr"><div class="spp"><sup>$</sup>189</div><div class="sloc">Pizzería Artesanal<br>Hidalgo, México</div></div>
       </div>
 
       <!-- ★ 3 LA BOSCAIOLA -->
@@ -397,7 +522,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
         </div><!-- /sh -->
         <div class="sdv">✦</div>
         <div class="svd"><span class="svl">El bocado</span><div class="svn">Rústico → Terroso<br><em>→ Especiado → Profundo</em></div><p class="svds">La que pides cuando quieres algo de verdad. El champiñón huele a tierra mojada, el chorizo artesanal lo llena todo con ese calor especiado que reconforta, y la aceituna llega al final con un toque salino que lo redondea. Como una tarde de invierno en buena compañía.</p><div class="fa"><span class="fp fp-rus">Rústico</span><span class="fpa">→</span><span class="fp fp-ter">Terroso</span><span class="fpa">→</span><span class="fp fp-esp">Especiado</span><span class="fpa">→</span><span class="fp fp-adic">Adictivo</span></div></div>
-        <div class="spr"><div class="spp"><sup>$</sup>169</div><div class="sloc">Pizzería Artesanal<br> Sahagún, Hgo </div></div>
+        <div class="spr"><div class="spp"><sup>$</sup>179</div><div class="sloc">Pizzería Artesanal<br>Hidalgo, México</div></div>
       </div>
 
       <!-- ★ 4 QUATTRO FORMAGGI -->
@@ -434,15 +559,59 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
         </div><!-- /sh -->
         <div class="sdv">✦</div>
         <div class="svd"><span class="svl">El bocado</span><div class="svn">Suave → Cremoso<br><em>→ Intenso → Adictivo</em></div><p class="svds">Cuatro quesos que decidieron ser amigos. El oaxaca estira sus hilos, el gouda se derrite dulce y caramelizado, el manchego pone carácter, y la mozzarella los abraza a todos. Cada mordida es un poco diferente a la anterior — y todas son buenas. De las que terminas y ya quieres otra.</p><div class="fa"><span class="fp fp-suav">Suave</span><span class="fpa">→</span><span class="fp fp-crem">Cremoso</span><span class="fpa">→</span><span class="fp fp-int">Intenso</span><span class="fpa">→</span><span class="fp fp-adic">Adictivo</span></div></div>
-        <div class="spr"><div class="spp"><sup>$</sup>159</div><div class="sloc">Pizzería Artesanal<br> Sahagún, Hgo</div></div>
+        <div class="spr"><div class="spp"><sup>$</sup>169</div><div class="sloc">Pizzería Artesanal<br>Hidalgo, México</div></div>
       </div>
- <!-- ★ 5 MARGHERITA AL BASILICO -->
-<div class="sc">
+
+      <!-- ★ 5 PEPPERONI -->
+      <div class="sc">
         <div class="cc tl"></div><div class="cc tr"></div><div class="cc bl"></div><div class="cc br"></div>
         <div class="se">Don Ciccio · Pizza V</div>
         <div class="sh">
           <div class="sh-text">
-            <div class="sn">Margherita <em>al Basilico</em></div>
+            <div class="sn"><em>Pepperoni</em></div>
+            <div class="stg">El clásico con carácter.</div>
+          </div>
+          <div class="spw"><svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="120" cy="120" r="114" fill="#c8843a"/>
+          <circle cx="68" cy="36" r="8" fill="#1a0f00" opacity=".5"/>
+          <circle cx="192" cy="52" r="6" fill="#1a0f00" opacity=".45"/>
+          <circle cx="210" cy="162" r="7" fill="#1a0f00" opacity=".5"/>
+          <circle cx="44" cy="178" r="6" fill="#1a0f00" opacity=".45"/>
+          <circle cx="120" cy="218" r="5" fill="#1a0f00" opacity=".4"/>
+          <circle cx="120" cy="120" r="96" fill="#d49050"/>
+          <circle cx="120" cy="120" r="84" fill="#c03020"/>
+          <ellipse cx="103" cy="100" rx="20" ry="17" fill="#f8f4ea" opacity=".95"/>
+          <ellipse cx="140" cy="96" rx="17" ry="15" fill="#f5f0e8" opacity=".9"/>
+          <ellipse cx="152" cy="128" rx="18" ry="16" fill="#f8f4ea" opacity=".93"/>
+          <ellipse cx="130" cy="150" rx="16" ry="14" fill="#f5f0e8" opacity=".9"/>
+          <ellipse cx="96" cy="138" rx="17" ry="14" fill="#f8f4ea" opacity=".92"/>
+          <ellipse cx="118" cy="118" rx="13" ry="11" fill="#f5f0e8" opacity=".85"/>
+          <circle cx="104" cy="100" r="11" fill="#c03020" opacity=".88"/>
+          <circle cx="104" cy="100" r="8" fill="#b02818" opacity=".9"/>
+          <circle cx="138" cy="97" r="9" fill="#c03020" opacity=".85"/>
+          <circle cx="138" cy="97" r="6.5" fill="#b02818" opacity=".88"/>
+          <circle cx="150" cy="128" r="10" fill="#c03020" opacity=".87"/>
+          <circle cx="150" cy="128" r="7" fill="#b02818" opacity=".9"/>
+          <circle cx="118" cy="150" r="9" fill="#c03020" opacity=".83"/>
+          <circle cx="118" cy="150" r="6.5" fill="#b02818" opacity=".86"/>
+          <circle cx="95" cy="136" r="9.5" fill="#c03020" opacity=".85"/>
+          <circle cx="95" cy="136" r="7" fill="#b02818" opacity=".88"/>
+          <circle cx="120" cy="119" r="7.5" fill="#c03020" opacity=".8"/>
+          <circle cx="120" cy="119" r="5" fill="#b02818" opacity=".83"/>
+          </svg></div>
+        </div><!-- /sh -->
+        <div class="sdv">✦</div>
+        <div class="svd"><span class="svl">El bocado</span><div class="svn">Ahumado → Especiado<br><em>→ Cremoso → Directo</em></div><p class="svds">La Margherita con actitud. El tomate vivo y brillante, la mozzarella que lo recibe con calma — y encima, el pepperoni que lo cambia todo: ahumado, especiado, con esa grasa que se funde en los bordes y lo convierte en algo irresistible. Simple, honesto y con carácter.</p><div class="fa"><span class="fp fp-ahum">Ahumado</span><span class="fpa">→</span><span class="fp fp-esp">Especiado</span><span class="fpa">→</span><span class="fp fp-crem">Cremoso</span><span class="fpa">→</span><span class="fp fp-adic">Directo</span></div></div>
+        <div class="spr"><div class="spp"><sup>$</sup>169</div><div class="sloc">Pizzería Artesanal<br>Hidalgo, México</div></div>
+      </div>
+
+      <!-- ★ 6 MARGHERITA -->
+      <div class="sc">
+        <div class="cc tl"></div><div class="cc tr"></div><div class="cc bl"></div><div class="cc br"></div>
+        <div class="se">Don Ciccio · Pizza VI</div>
+        <div class="sh">
+          <div class="sh-text">
+            <div class="sn"><em>Margherita</em></div>
             <div class="stg">El clásico que nunca falla.</div>
           </div>
           <div class="spw"><svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
@@ -475,13 +644,13 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
         </div><!-- /sh -->
         <div class="sdv">✦</div>
         <div class="svd"><span class="svl">El bocado</span><div class="svn">Ácido → Cremoso<br><em>→ Limpio → Eterno</em></div><p class="svds">Tres ingredientes. Nada que esconder. El tomate llega vivo y brillante, la mozzarella lo recibe con calma, y el aceite de oliva lo cierra todo con una elegancia que no necesita palabras. La pizza más sencilla del menú — y la más honesta. Cuando sale bien, te recuerda por qué te gusta la pizza.</p><div class="fa"><span class="fp fp-acid">Ácido</span><span class="fpa">→</span><span class="fp fp-crem">Cremoso</span><span class="fpa">→</span><span class="fp fp-limp">Limpio</span><span class="fpa">→</span><span class="fp fp-suav">Eterno</span></div></div>
-        <div class="spr"><div class="spp"><sup>$</sup>139</div><div class="sloc">Pizzería Artesanal<br> Sahagún, Hgo </div></div>
+        <div class="spr"><div class="spp"><sup>$</sup>149</div><div class="sloc">Pizzería Artesanal<br>Hidalgo, México</div></div>
       </div>
 
-      <!-- ★ 6 SENZA FRONZOLI -->
+      <!-- ★ 7 SENZA FRONZOLI -->
       <div class="sc">
         <div class="cc tl"></div><div class="cc tr"></div><div class="cc bl"></div><div class="cc br"></div>
-        <div class="se">Don Ciccio · Pizza VI</div>
+        <div class="se">Don Ciccio · Pizza VII</div>
         <div class="sh">
           <div class="sh-text">
             <div class="sn">Senza <em>Fronzoli</em></div>
@@ -515,12 +684,31 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
         </div><!-- /sh -->
         <div class="sdv">✦</div>
         <div class="svd"><span class="svl">El bocado</span><div class="svn">Honesto → Cremoso<br><em>→ Dulce → Satisfactorio</em></div><p class="svds">Hay pizzas que necesitan presentación. Esta no. El oaxaca se funde despacio y estira sin apuro, el jamón se hace notar con dignidad, y la cebolla asada trae ese dulzor profundo que solo da el fuego lento. Te la terminas, te recuestas, y estás bien. Así de simple.</p><div class="fa"><span class="fp fp-hon">Honesto</span><span class="fpa">→</span><span class="fp fp-crem">Cremoso</span><span class="fpa">→</span><span class="fp fp-dulc">Dulce</span><span class="fpa">→</span><span class="fp fp-adic">Satisfactorio</span></div></div>
-        <div class="spr"><div class="spp"><sup>$</sup>129</div><div class="sloc">Pizzería Artesanal<br> Sahagún, Hgo </div></div>
+        <div class="spr"><div class="spp"><sup>$</sup>139</div><div class="sloc">Pizzería Artesanal<br>Hidalgo, México</div></div>
       </div>
 
     </div><!-- /dTrack -->
     </div><!-- /dcar -->
   </div>
+  <footer class="site-footer">
+    <div class="footer-brand">Don Ciccio</div>
+    <div class="footer-sub">Pizzería Artesanal · Hidalgo, México</div>
+    <div class="footer-links">
+      <a href="https://instagram.com/TU_USUARIO" class="footer-link" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg>
+        <span>Instagram</span>
+      </a>
+      <a href="https://wa.me/527001234567" class="footer-link" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        <span>WhatsApp</span>
+      </a>
+      <a href="tel:+527001234567" class="footer-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.9a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span>Teléfono</span>
+      </a>
+    </div>
+    <div class="footer-copy">© Don Ciccio · Todos los derechos reservados</div>
+  </footer>
 </div>
 
 <script>
@@ -563,7 +751,7 @@ function showV(v){
 }
 
 // Descubre carousel — circular + animated
-let cD = 0, tD = 6, animD = false;
+let cD = 0, tD = 7, animD = false;
 const sCards = document.querySelectorAll('.sc');
 
 function updCtrl() {
