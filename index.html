@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menú — Don Ciccio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+/* ── MODO CLARO (por defecto) ── */
+:root{
+  --p:#f7edd8;--p2:#f0e0c0;--ink:#1c1008;--inks:#3d2b18;
+  --red:#8b2020;--gold:#a07020;--gl:#c8941a;--bdr:#d4b87a;
+  --mut:#7a5c3a;--cream:#fdf6ea;
+  --dk:#1c1008;--dk2:#150d04;--dkb:#3a2a10;--dkm:#9a7a4a;
+  --nav-bg:#1c1008;--nav-text:#f0e0c0;
+  /* ── Escala tipográfica — 3 tamaños, adaptativos al sistema ── */
+  --fs-s:.75rem;   /* etiquetas, pills, footer */
+  --fs-m:.95rem;    /* nombres ingredientes, notas, nav */
+  --fs-l:1.125rem;     /* descripciones y párrafos de lectura */
+  /* ── PILLS DE SABOR — cada uno con su propio universo ── */
+  --c-crem:#7a5808;--b-crem:rgba(122,88,8,.1);
+  --c-int:#5a1060;--b-int:rgba(90,16,96,.1);
+  --c-cruj:#8a3808;--b-cruj:rgba(138,56,8,.1);
+  --c-dulc:#7a5800;--b-dulc:rgba(122,88,0,.1);
+  --c-pic:#981010;--b-pic:rgba(152,16,16,.1);
+  --c-herb:#2a6030;--b-herb:rgba(42,96,48,.1);
+  --c-ahum:#484848;--b-ahum:rgba(72,72,72,.1);
+  --c-adic:#1a5860;--b-adic:rgba(26,88,96,.1);
+  --c-rus:#6a4018;--b-rus:rgba(106,64,24,.1);
+  --c-ter:#4a5818;--b-ter:rgba(74,88,24,.1);
+  --c-esp:#8a4820;--b-esp:rgba(138,72,32,.1);
+  --c-fres:#1a6850;--b-fres:rgba(26,104,80,.1);
+  --c-suav:#7a3055;--b-suav:rgba(122,48,85,.1);
+  --c-limp:#285878;--b-limp:rgba(40,88,120,.1);
+  --c-acid:#4a6208;--b-acid:rgba(74,98,8,.1);
+  --c-hon:#7a5520;--b-hon:rgba(122,85,32,.1);
+}
+
+/* ── MODO OSCURO ── */
+[data-theme="dark"]{
+  --p:#1e1004;--p2:#2a1608;--ink:#f0dfc0;--inks:#c8a870;
+  --red:#d46060;--gold:#c8941a;--gl:#d4a840;--bdr:#4a3010;
+  --mut:#9a7a4a;--cream:#261408;
+  --dk:#1e1004;--dk2:#140a02;--dkb:#3a2808;--dkm:#9a7a4a;
+  --nav-bg:#0e0802;--nav-text:#f0dfc0;
+  --c-crem:#d4a820;--b-crem:rgba(212,168,32,.13);
+  --c-int:#c060b8;--b-int:rgba(192,96,184,.13);
+  --c-cruj:#d45a20;--b-cruj:rgba(212,90,32,.13);
+  --c-dulc:#c89010;--b-dulc:rgba(200,144,16,.13);
+  --c-pic:#e84030;--b-pic:rgba(232,64,48,.13);
+  --c-herb:#50a060;--b-herb:rgba(80,160,96,.13);
+  --c-ahum:#8a8a8a;--b-ahum:rgba(138,138,138,.13);
+  --c-adic:#30a0b0;--b-adic:rgba(48,160,176,.13);
+  --c-rus:#b07030;--b-rus:rgba(176,112,48,.13);
+  --c-ter:#889030;--b-ter:rgba(136,144,48,.13);
+  --c-esp:#d08040;--b-esp:rgba(208,128,64,.13);
+  --c-fres:#38a880;--b-fres:rgba(56,168,128,.13);
+  --c-suav:#c060a0;--b-suav:rgba(192,96,160,.13);
+  --c-limp:#5090c0;--b-limp:rgba(80,144,192,.13);
+  --c-acid:#92b028;--b-acid:rgba(146,176,40,.13);
+  --c-hon:#c09048;--b-hon:rgba(192,144,72,.13);
+}
+
+html{scroll-behavior:smooth}
+body{background:var(--p);color:var(--ink);font-family:'EB Garamond',Georgia,serif;font-size:var(--fs-l);min-height:100vh;transition:background .35s,color .35s}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:.5}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);display:flex;justify-content:center;align-items:center;border-bottom:2px solid var(--gold);transition:background .35s}
+.nb{background:none;border:none;color:var(--nav-text);font-family:'EB Garamond',serif;font-size:var(--fs-l);letter-spacing:.2em;text-transform:uppercase;padding:.9rem 1.5rem;cursor:pointer;position:relative;transition:color .2s;white-space:nowrap}
+.nb::after{content:'';position:absolute;bottom:0;left:50%;right:50%;height:2px;background:var(--gl);transition:left .25s,right .25s}
+.nb.active{color:var(--gl)}.nb.active::after{left:0;right:0}
+
+/* BOTÓN MODO */
+.theme-btn{position:absolute;right:.85rem;background:none;border:1px solid rgba(212,184,122,.35);color:var(--gl);font-size:var(--fs-l);width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;border-radius:50%;transition:border-color .2s,color .2s,transform .3s;flex-shrink:0}
+.theme-btn:hover{border-color:var(--gl);transform:rotate(20deg)}
+
+.view{display:none}.view.active{display:block}
+
+/* FULL MENU */
+.fm{max-width:700px;margin:0 auto;padding:3rem 1.5rem 5rem;position:relative;z-index:1}
+.mf{border:1px solid var(--bdr);padding:2.5rem 2rem;position:relative;transition:border-color .35s}
+.mf::before{content:'◆';position:absolute;top:-.5rem;left:50%;transform:translateX(-50%);color:var(--gold);font-size:var(--fs-m);background:var(--p);padding:0 .5rem;transition:background .35s,color .35s}
+.mf::after{content:'◆';position:absolute;bottom:-.5rem;left:50%;transform:translateX(-50%);color:var(--gold);font-size:var(--fs-m);background:var(--p);padding:0 .5rem;transition:background .35s,color .35s}
+.co{position:absolute;width:18px;height:18px;border-color:var(--gold);border-style:solid;transition:border-color .35s}
+.co.tl{top:-1px;left:-1px;border-width:2px 0 0 2px}.co.tr{top:-1px;right:-1px;border-width:2px 2px 0 0}
+.co.bl{bottom:-1px;left:-1px;border-width:0 0 2px 2px}.co.br{bottom:-1px;right:-1px;border-width:0 2px 2px 0}
+.mh{text-align:center;margin-bottom:2.5rem;padding-bottom:2rem;border-bottom:1px solid var(--bdr)}
+.ey{font-size:var(--fs-s);letter-spacing:.4em;text-transform:uppercase;color:var(--mut);display:block;margin-bottom:.6rem}
+.mt{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,10vw,5rem);font-weight:300;color:var(--ink);line-height:.9}
+.mt span{display:block;font-size:.45em;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--red);margin-top:.3em}
+.ms{font-size:var(--fs-m);font-style:italic;color:var(--mut);margin-top:.8rem}
+.orn{display:flex;align-items:center;justify-content:center;gap:1rem;margin:1.2rem 0 0;color:var(--gold);font-size:var(--fs-m)}
+.orn::before,.orn::after{content:'';flex:1;max-width:80px;height:1px;background:linear-gradient(to right,transparent,var(--bdr))}
+.orn::after{background:linear-gradient(to left,transparent,var(--bdr))}
+.pe{padding:1.8rem 0;border-bottom:1px solid var(--bdr);animation:eI .4s ease forwards}
+.pe:last-child{border-bottom:none}
+.pe:nth-child(1){animation-delay:0s}.pe:nth-child(2){animation-delay:.08s}.pe:nth-child(3){animation-delay:.16s}
+.pe:nth-child(4){animation-delay:.24s}.pe:nth-child(5){animation-delay:.32s}.pe:nth-child(6){animation-delay:.4s}
+/* Fila principal: info izquierda, precio derecha */
+.et{display:flex;align-items:flex-start;justify-content:space-between;gap:1.2rem;margin-bottom:.3rem}
+.et-left{display:flex;flex-direction:column;gap:.15rem;flex:1;min-width:0}
+.en{font-family:'Cormorant Garamond',serif;font-size:var(--fs-s);color:var(--red);letter-spacing:.2em;text-transform:uppercase;line-height:1}
+.enm{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,5vw,1.9rem);font-weight:600;color:var(--ink);line-height:1.05}
+.ep{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,4vw,1.85rem);font-weight:600;color:var(--red);flex-shrink:0;line-height:1;padding-top:.15rem}
+.etg{font-style:italic;font-size:var(--fs-l);color:var(--mut);margin-bottom:.5rem;display:block}
+.edc{font-size:var(--fs-l);color:var(--inks);line-height:1.8}
+.mfoot{text-align:center;padding:1.5rem 0 0;font-size:var(--fs-s);letter-spacing:.2em;text-transform:uppercase;color:var(--mut)}
+
+/* DESCUBRE */
+.cb::after{content:'';flex:1;height:1px;background:var(--bdr)}
+.cn{font-family:'Cormorant Garamond',serif;font-size:var(--fs-m);letter-spacing:.2em;color:var(--red);text-transform:uppercase;margin-bottom:.4rem}
+.cnm{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,8vw,2.8rem);font-weight:600;color:var(--ink);line-height:1;margin-bottom:.4rem}
+.ctg{font-style:italic;font-size:var(--fs-l);color:var(--mut);margin-bottom:1.8rem}
+.cdv{display:flex;align-items:center;gap:.8rem;margin-bottom:1.5rem;color:var(--gold);font-size:var(--fs-m)}
+.cdv::before,.cdv::after{content:'';flex:1;height:1px;background:var(--bdr)}
+.ci{font-size:var(--fs-l);color:var(--inks);line-height:1.75;flex:1}
+.ih{color:var(--ink);font-weight:500}
+.cf{margin-top:2rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--bdr);padding-top:1.2rem}
+.cpr{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:600;color:var(--red);line-height:1}
+.cpr sup{font-size:.5em;vertical-align:super;color:var(--mut);font-weight:400}
+.cloc{text-align:right;font-size:var(--fs-m);letter-spacing:.12em;text-transform:uppercase;color:var(--mut);line-height:1.5}
+/* ── Minimal top controls ── */
+.dctrl{display:flex;align-items:center;gap:.75rem;margin-bottom:.9rem;padding:0 .1rem}
+.dcb{background:none;border:none;color:var(--mut);font-family:'EB Garamond',serif;font-size:2rem;line-height:1;width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:color .15s;flex-shrink:0;padding:0}
+.dcb:hover{color:var(--ink)}
+.dtrk{flex:1;position:relative;height:2px;background:var(--bdr);border-radius:2px}
+.dtrk-f{position:absolute;top:0;left:0;height:100%;background:var(--red);border-radius:2px;transition:width .22s cubic-bezier(.25,.46,.45,.94)}
+.dctr{font-family:'Cormorant Garamond',serif;font-size:var(--fs-m);color:var(--mut);letter-spacing:.12em;flex-shrink:0}
+
+/* DESCUBRE CARDS */
+.cc{position:absolute;width:16px;height:16px;border-color:var(--gold);border-style:solid;transition:border-color .35s}
+.cc.tl{top:-1px;left:-1px;border-width:2px 0 0 2px}.cc.tr{top:-1px;right:-1px;border-width:2px 2px 0 0}
+.cc.bl{bottom:-1px;left:-1px;border-width:0 0 2px 2px}.cc.br{bottom:-1px;right:-1px;border-width:0 2px 2px 0}
+.dv{min-height:calc(100vh - 50px);display:flex;flex-direction:column;align-items:center;padding:.75rem 1rem 4rem;position:relative;z-index:1}
+.dlb{font-size:var(--fs-m);letter-spacing:.3em;text-transform:uppercase;color:var(--mut);margin-bottom:1.5rem;text-align:center}
+.dcar{width:100%;max-width:500px}
+.dtr{position:relative;overflow:hidden}
+/* Cards: hidden by default via opacity+position, not display:none */
+.sc{background:var(--cream);border:1px solid var(--bdr);padding:2rem 1.6rem 1.6rem;flex-direction:column;position:absolute;top:0;left:0;width:100%;opacity:0;pointer-events:none;transition:background .35s,border-color .35s;overflow:hidden}
+.sc::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(160,112,32,.04) 0%,transparent 65%);pointer-events:none}
+/* Active card sits in flow, giving the container its height */
+.sc.active{display:flex;position:relative;opacity:1;pointer-events:auto}
+.sc .cc{border-color:var(--gold)}
+
+/* ── Slide animations — light & fast ── */
+@keyframes scInR {from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:translateX(0)}}
+@keyframes scInL {from{opacity:0;transform:translateX(-18px)}to{opacity:1;transform:translateX(0)}}
+.sc.anim-in-r{animation:scInR .21s cubic-bezier(.25,.46,.45,.94) forwards}
+.sc.anim-in-l{animation:scInL .21s cubic-bezier(.25,.46,.45,.94) forwards}
+
+.se{font-size:var(--fs-s);letter-spacing:.3em;text-transform:uppercase;color:var(--red);display:flex;align-items:center;gap:.6rem;margin-bottom:1rem}
+.se::after{content:'';flex:1;height:1px;background:var(--bdr)}
+.sn{font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,6vw,2.6rem);font-weight:600;color:var(--ink);line-height:.95;margin-bottom:.25rem}
+.sn em{color:var(--red);font-style:italic}
+.stg{font-style:italic;font-size:var(--fs-l);color:var(--mut);margin-bottom:0}
+/* ── Header row: título a la izquierda, pizza a la derecha ── */
+.sh{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1.1rem}
+.sh-text{flex:1;min-width:0}
+/* ── Pizza illustration — foto de perfil ── */
+.spw{width:100px;height:100px;flex-shrink:0;filter:drop-shadow(0 4px 14px rgba(160,112,32,.18))}
+.spw svg{width:100%;height:100%}
+.sdv{display:flex;align-items:center;gap:.8rem;margin-bottom:1rem;color:var(--gold);font-size:var(--fs-m)}
+.sdv::before,.sdv::after{content:'';flex:1;height:1px;background:var(--bdr)}
+.svd{background:var(--p2);border:1px solid var(--bdr);padding:1.1rem 1.2rem 1rem;text-align:center;margin-bottom:.9rem;transition:background .35s}
+.svl{font-size:var(--fs-s);letter-spacing:.3em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.4rem}
+.svn{font-family:'Cormorant Garamond',serif;font-size:clamp(1.2rem,4vw,1.5rem);color:var(--ink);line-height:1.3;margin-bottom:.4rem}
+.svn em{color:var(--red);font-style:italic}
+.svds{font-size:var(--fs-l);color:var(--inks);font-style:italic;line-height:1.7;margin-bottom:.9rem}
+.fa{display:flex;justify-content:center;align-items:center;gap:.35rem;flex-wrap:wrap}
+
+/* ── PILLS — cada sabor, su propia identidad ── */
+.fp{font-size:var(--fs-s);letter-spacing:.08em;text-transform:uppercase;padding:.28rem .7rem;border-radius:20px;border:1px solid;font-weight:500;transition:color .35s,border-color .35s,background .35s}
+.fpa{color:var(--mut);font-size:var(--fs-m);transition:color .35s}
+
+.fp-crem{color:var(--c-crem);border-color:var(--c-crem);background:var(--b-crem)}
+.fp-int {color:var(--c-int);border-color:var(--c-int);background:var(--b-int)}
+.fp-cruj{color:var(--c-cruj);border-color:var(--c-cruj);background:var(--b-cruj)}
+.fp-dulc{color:var(--c-dulc);border-color:var(--c-dulc);background:var(--b-dulc)}
+.fp-pic {color:var(--c-pic);border-color:var(--c-pic);background:var(--b-pic)}
+.fp-herb{color:var(--c-herb);border-color:var(--c-herb);background:var(--b-herb)}
+.fp-ahum{color:var(--c-ahum);border-color:var(--c-ahum);background:var(--b-ahum)}
+.fp-adic{color:var(--c-adic);border-color:var(--c-adic);background:var(--b-adic)}
+.fp-rus {color:var(--c-rus);border-color:var(--c-rus);background:var(--b-rus)}
+.fp-ter {color:var(--c-ter);border-color:var(--c-ter);background:var(--b-ter)}
+.fp-esp {color:var(--c-esp);border-color:var(--c-esp);background:var(--b-esp)}
+.fp-fres{color:var(--c-fres);border-color:var(--c-fres);background:var(--b-fres)}
+.fp-suav{color:var(--c-suav);border-color:var(--c-suav);background:var(--b-suav)}
+.fp-limp{color:var(--c-limp);border-color:var(--c-limp);background:var(--b-limp)}
+.fp-acid{color:var(--c-acid);border-color:var(--c-acid);background:var(--b-acid)}
+.fp-hon {color:var(--c-hon);border-color:var(--c-hon);background:var(--b-hon)}
+
+.spr{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--bdr);padding-top:.9rem}
+.spp{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:600;color:var(--red);line-height:1}
+.spp sup{font-size:.5em;vertical-align:super;color:var(--mut);font-weight:400}
+.sloc{text-align:right;font-size:var(--fs-s);letter-spacing:.1em;text-transform:uppercase;color:var(--mut);line-height:1.7}
+
+@keyframes eI{to{opacity:1;transform:translateY(0)}}
+
+/* ── RESPONSIVE ── */
+
+/* Móvil chico (< 380px) — pantallas pequeñas, máxima legibilidad */
+@media (max-width:380px){
+  :root{--fs-s:.72rem;--fs-m:.82rem;--fs-l:.95rem;}
+  .fm{padding:2rem 1rem 4rem}
+  .mf{padding:2rem 1.2rem}
+  .sc{padding:1.6rem 1.2rem 1.4rem}
+  .spw{width:86px;height:86px}
+  .enm{font-size:1.5rem}
+  .ep{font-size:1.4rem}
+  .sn{font-size:1.7rem}
+}
+
+/* Móvil estándar (380–599px) — ya cubierto por los valores base */
+
+/* Tablet (600–899px) — un poco más espacio */
+@media (min-width:600px){
+  :root{--fs-s:.78rem;--fs-m:.9rem;--fs-l:1.05rem;}
+  .dcar{max-width:560px}
+  .sc{padding:2.2rem 2rem 1.8rem}
+  .spw{width:112px;height:112px}
+  .fm{padding:3.5rem 2rem 6rem}
+}
+
+/* Desktop (≥ 900px) — escala cómoda de escritorio */
+@media (min-width:900px){
+  :root{--fs-s:.8rem;--fs-m:.95rem;--fs-l:1.08rem;}
+  .dcar{max-width:620px}
+  .sc{padding:2.5rem 2.2rem 2rem}
+  .spw{width:120px;height:120px}
+  .fm{max-width:760px;padding:4rem 2.5rem 6rem}
+  .enm{font-size:2.1rem}
+  .ep{font-size:1.95rem}
+  .dcb{width:48px;height:48px;font-size:2.2rem}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <button class="nb active" onclick="showV('full')" id="btn-full">Menú</button>
+  <button class="nb" onclick="showV('descubre')" id="btn-descubre">Descubre</button>
+  <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="Cambiar tema">☽</button>
+</nav>
+
+<!-- FULL MENU -->
+<div class="view active" id="view-full">
+  <div class="fm"><div class="mf">
+    <div class="co tl"></div><div class="co tr"></div><div class="co bl"></div><div class="co br"></div>
+    <div class="mh">
+      <span class="ey">Pizzería Artesanal · Sahagún, Hgo</span>
+      <div class="mt">Don Ciccio<span>Menú Oficial</span></div>
+      <p class="ms">Masa Neonapolitana · Ingredientes seleccionados · Don Ciccio inspira, nosotros amasamos😼</p>
+      <div class="orn">✦</div>
+    </div>
+    <div class="pe"><div class="et"><div class="et-left"><span class="en">I</span><span class="enm">La D'Ciccio</span></div><span class="ep">$189</span></div><span class="etg">La firma del Don.</span><p class="edc">Crema de ajo, cinco quesos selectos — mozzarella, gouda, manchego, oaxaca y queso crema — nuez tostada y un velo final de miel de abeja 100% natural.</p></div>
+    <div class="pe"><div class="et"><div class="et-left"><span class="en">II</span><span class="enm">La Piccante al Miele</span></div><span class="ep">$179</span></div><span class="etg">Italia encuentra el fuego hidalguense.</span><p class="edc">Salsa di pomodoro, mozzarella fresca, Salami Genoa y un acabado de Hot Honey artesanal. Dulce, ahumado y con el calor justo.</p></div>
+    <div class="pe"><div class="et"><div class="et-left"><span class="en">III</span><span class="enm">La Boscaiola</span></div><span class="ep">$169</span></div><span class="etg">Sabor a bosque y tradición.</span><p class="edc">Salsa di pomodoro, mozzarella, champiñones salteados, chorizo artesanal y aceituna negra. Una pizza rústica de carácter intenso.</p></div>
+    <div class="pe"><div class="et"><div class="et-left"><span class="en">IV</span><span class="enm">Quattro Formaggi</span></div><span class="ep">$159</span></div><span class="etg">El abrazo de los cuatro quesos.</span><p class="edc">Velo ligero de salsa di pomodoro, mozzarella, gouda, manchego y oaxaca gratinados en perfecta armonía. Cremosa, elegante y adictiva.</p></div>
+    <div class="pe"><div class="et"><div class="et-left"><span class="en">V</span><span class="enm">Margherita al Basilico</span></div><span class="ep">$139</span></div><span class="etg">El clásico que nunca falla.</span><p class="edc">Salsa di pomodoro, mozzarella fresca y un hilo de aceite de oliva virgen. El sello de calidad de Don Ciccio.</p></div>
+    <div class="pe"><div class="et"><div class="et-left"><span class="en">VI</span><span class="enm">Senza Fronzoli</span></div><span class="ep">$129</span></div><span class="etg">La pureza del buen ingrediente.</span><p class="edc">Aceite de ajo confitado, mozzarella, queso oaxaca gratinado, jamón de pierna seleccionado y cebolla asada. Sin adornos, solo sabor honesto.</p></div>
+    
+    <div class="mfoot"> Don Ciccio · Pizzería Artesanal · Sahagún, Hgo</div>
+  </div></div>
+</div>
+
+
+
+<!-- DESCUBRE -->
+<div class="view" id="view-descubre">
+  <div class="dv">
+    <div class="dcar">
+      <!-- Controls above the card -->
+      <div class="dctrl">
+        <button class="dcb" id="dPrev" onclick="navD(-1)">‹</button>
+        <div class="dtrk"><div class="dtrk-f" id="dTrkF" style="width:16.6%"></div></div>
+        <span class="dctr" id="dCtr">01 / 06</span>
+        <button class="dcb" id="dNext" onclick="navD(1)">›</button>
+      </div>
+      <div class="dtr" id="dTrack">
+
+      <!-- ★ 1 LA D'CICCIO -->
+      <div class="sc active">
+        <div class="cc tl"></div><div class="cc tr"></div><div class="cc bl"></div><div class="cc br"></div>
+        <div class="se">Don Ciccio · Pizza I</div>
+        <div class="sh">
+          <div class="sh-text">
+            <div class="sn">La <em>D'Ciccio</em></div>
+            <div class="stg">La firma del Don.</div>
+          </div>
+          <div class="spw"><svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="120" cy="120" r="114" fill="#d4934a"/>
+          <circle cx="70" cy="38" r="8" fill="#b07030" opacity=".5"/>
+          <circle cx="195" cy="55" r="5" fill="#b07030" opacity=".45"/>
+          <circle cx="215" cy="160" r="7" fill="#b07030" opacity=".4"/>
+          <circle cx="45" cy="175" r="6" fill="#b07030" opacity=".4"/>
+          <circle cx="120" cy="220" r="5" fill="#b07030" opacity=".35"/>
+          <circle cx="120" cy="120" r="96" fill="#ede0b0"/>
+          <circle cx="120" cy="120" r="84" fill="#f0e8c0"/>
+          <ellipse cx="108" cy="105" rx="26" ry="22" fill="#f8f0e0" opacity=".9"/>
+          <ellipse cx="138" cy="105" rx="22" ry="20" fill="#e8c860" opacity=".75"/>
+          <ellipse cx="105" cy="138" rx="22" ry="20" fill="#f0d880" opacity=".8"/>
+          <ellipse cx="136" cy="138" rx="24" ry="20" fill="#f5efe0" opacity=".85"/>
+          <ellipse cx="95" cy="115" rx="6" ry="4" fill="#7a4a20" opacity=".85" transform="rotate(-20 95 115)"/>
+          <ellipse cx="148" cy="112" rx="5" ry="3.5" fill="#7a4a20" opacity=".8" transform="rotate(15 148 112)"/>
+          <ellipse cx="112" cy="148" rx="5" ry="3.5" fill="#7a4a20" opacity=".8" transform="rotate(-10 112 148)"/>
+          <ellipse cx="143" cy="145" rx="6" ry="4" fill="#7a4a20" opacity=".85" transform="rotate(25 143 145)"/>
+          <ellipse cx="122" cy="125" rx="4" ry="3" fill="#7a4a20" opacity=".75"/>
+          <path d="M100,90 Q115,108 108,128 Q102,148 115,162" stroke="#d4a020" stroke-width="2" stroke-linecap="round" fill="none" opacity=".8"/>
+          <path d="M140,93 Q150,112 144,134 Q138,154 150,163" stroke="#d4a020" stroke-width="2" stroke-linecap="round" fill="none" opacity=".75"/>
+          <circle cx="115" cy="162" r="3" fill="#d4a020" opacity=".9"/>
+          <circle cx="150" cy="163" r="2.5" fill="#d4a020" opacity=".85"/>
+        </svg></div>
+        </div><!-- /sh -->
+        <div class="sdv">✦</div>
+        <div class="svd"><span class="svl">El bocado</span><div class="svn">Cremoso → Intenso<br><em>→ Crujiente → Dulce</em></div><p class="svds">Esta es la que el Don pedía cuando llegaba cansado. Cinco quesos que se funden sin pelear, la nuez que aparece justo cuando menos lo esperas, y ese hilo de miel al final que lo convierte todo en un abrazo. Calienta por dentro.</p><div class="fa"><span class="fp fp-crem">Cremoso</span><span class="fpa">→</span><span class="fp fp-int">Intenso</span><span class="fpa">→</span><span class="fp fp-cruj">Crujiente</span><span class="fpa">→</span><span class="fp fp-dulc">Dulce</span></div></div>
+        <div class="spr"><div class="spp"><sup>$</sup>189</div><div class="sloc">Pizzería Artesanal<br> Sahagún, Hgo </div></div>
+      </div>
+
+      <!-- ★ 2 LA PICCANTE AL MIELE -->
+      <div class="sc">
+        <div class="cc tl"></div><div class="cc tr"></div><div class="cc bl"></div><div class="cc br"></div>
+        <div class="se">Don Ciccio · Pizza II</div>
+        <div class="sh">
+          <div class="sh-text">
+            <div class="sn">La Piccante <em>al Miele</em></div>
+            <div class="stg">El encuentro entre Italia y el mezquite hidalguense.</div>
+          </div>
+          <div class="spw"><svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="120" cy="120" r="114" fill="#c8843a"/>
+          <circle cx="70" cy="38" r="8" fill="#1a0f00" opacity=".55"/>
+          <circle cx="195" cy="55" r="5" fill="#1a0f00" opacity=".5"/>
+          <circle cx="210" cy="162" r="7" fill="#1a0f00" opacity=".5"/>
+          <circle cx="44" cy="178" r="6" fill="#1a0f00" opacity=".5"/>
+          <circle cx="120" cy="218" r="5" fill="#1a0f00" opacity=".4"/>
+          <circle cx="120" cy="120" r="96" fill="#d49050"/>
+          <circle cx="120" cy="120" r="84" fill="#c03020"/>
+          <ellipse cx="98" cy="100" rx="18" ry="14" fill="#f8f4ea" opacity=".92"/>
+          <ellipse cx="142" cy="96" rx="15" ry="12" fill="#f5f0e8" opacity=".88"/>
+          <ellipse cx="150" cy="130" rx="16" ry="12" fill="#f8f4ea" opacity=".9"/>
+          <ellipse cx="104" cy="136" rx="15" ry="11" fill="#f5f0e8" opacity=".85"/>
+          <ellipse cx="122" cy="118" rx="12" ry="9" fill="#f8f4ea" opacity=".82"/>
+          <g stroke="#d4820a" stroke-width="1.8" stroke-linecap="round" fill="none" opacity=".85">
+            <path d="M102,82 Q112,98 106,116 Q100,134 112,148"/>
+            <path d="M134,84 Q142,102 136,122 Q130,140 140,152"/>
+          </g>
+          <circle cx="112" cy="148" r="3" fill="#d4820a" opacity=".9"/>
+          <circle cx="140" cy="152" r="2.5" fill="#d4820a" opacity=".85"/>
+          <ellipse cx="122" cy="122" rx="7" ry="4.5" fill="#4a7040" opacity=".7" transform="rotate(-18 122 122)"/>
+        </svg></div>
+        </div><!-- /sh -->
+        <div class="sdv">✦</div>
+        <div class="svd"><span class="svl">El bocado</span><div class="svn">Crujiente → Herbal<br><em>→ Dulce → Picante</em></div><p class="svds">Es de esas pizzas que te hacen hablar. El salami llega con esa personalidad herbal que no se calla, el queso lo abraza, y cuando ya crees que terminó, el Hot Honey artesanal se asoma — dulce, cálido, con un picor que se queda contigo un ratito más. Buena compañía.</p><div class="fa"><span class="fp fp-cruj">Crujiente</span><span class="fpa">→</span><span class="fp fp-herb">Herbal</span><span class="fpa">→</span><span class="fp fp-dulc">Dulce</span><span class="fpa">→</span><span class="fp fp-pic">Picante</span></div></div>
+        <div class="spr"><div class="spp"><sup>$</sup>179</div><div class="sloc">Pizzería Artesanal<br> Sahagún, Hgo </div></div>
+      </div>
+
+      <!-- ★ 3 LA BOSCAIOLA -->
+      <div class="sc">
+        <div class="cc tl"></div><div class="cc tr"></div><div class="cc bl"></div><div class="cc br"></div>
+        <div class="se">Don Ciccio · Pizza III</div>
+        <div class="sh">
+          <div class="sh-text">
+            <div class="sn">La <em>Boscaiola</em></div>
+            <div class="stg">Sabor a bosque y tradición.</div>
+          </div>
+          <div class="spw"><svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="120" cy="120" r="114" fill="#b87040"/>
+          <circle cx="68" cy="36" r="8" fill="#3a1a00" opacity=".6"/>
+          <circle cx="192" cy="52" r="6" fill="#3a1a00" opacity=".5"/>
+          <circle cx="210" cy="162" r="7" fill="#3a1a00" opacity=".55"/>
+          <circle cx="44" cy="178" r="6" fill="#3a1a00" opacity=".5"/>
+          <circle cx="120" cy="218" r="5" fill="#3a1a00" opacity=".45"/>
+          <circle cx="120" cy="120" r="96" fill="#c08050"/>
+          <circle cx="120" cy="120" r="84" fill="#a02820"/>
+          <circle cx="120" cy="120" r="72" fill="#e0c060" opacity=".88"/>
+          <ellipse cx="105" cy="98" rx="10" ry="7" fill="#8a6040" opacity=".9"/>
+          <rect x="103" y="98" width="4" height="6" rx="1" fill="#6a4020" opacity=".8"/>
+          <ellipse cx="138" cy="103" rx="11" ry="7.5" fill="#8a6040" opacity=".85"/>
+          <rect x="136" y="103" width="4" height="6" rx="1" fill="#6a4020" opacity=".8"/>
+          <ellipse cx="148" cy="132" rx="10" ry="7" fill="#8a6040" opacity=".9"/>
+          <rect x="146" y="132" width="4" height="6" rx="1" fill="#6a4020" opacity=".8"/>
+          <ellipse cx="100" cy="140" rx="9" ry="6.5" fill="#8a6040" opacity=".85"/>
+          <rect x="98" y="140" width="3.5" height="5" rx="1" fill="#6a4020" opacity=".8"/>
+          <circle cx="118" cy="120" r="8" fill="#a03030" opacity=".9"/>
+          <circle cx="132" cy="116" r="6" fill="#902828" opacity=".85"/>
+          <circle cx="108" cy="128" r="7" fill="#a03030" opacity=".85"/>
+          <circle cx="138" cy="138" r="6.5" fill="#902828" opacity=".8"/>
+          <circle cx="125" cy="96" r="5.5" fill="#1a1a1a" opacity=".9"/><circle cx="125" cy="96" r="2.5" fill="#3a3a3a" opacity=".6"/>
+          <circle cx="152" cy="116" r="5" fill="#1a1a1a" opacity=".85"/><circle cx="152" cy="116" r="2.2" fill="#3a3a3a" opacity=".6"/>
+          <circle cx="92" cy="118" r="5" fill="#1a1a1a" opacity=".85"/><circle cx="92" cy="118" r="2.2" fill="#3a3a3a" opacity=".6"/>
+          <circle cx="118" cy="150" r="5.5" fill="#1a1a1a" opacity=".9"/><circle cx="118" cy="150" r="2.5" fill="#3a3a3a" opacity=".6"/>
+          <ellipse cx="130" cy="130" rx="8" ry="5" fill="#3a7030" opacity=".8" transform="rotate(-20 130 130)"/>
+          <ellipse cx="110" cy="114" rx="7" ry="4.5" fill="#4a8040" opacity=".75" transform="rotate(15 110 114)"/>
+        </svg></div>
+        </div><!-- /sh -->
+        <div class="sdv">✦</div>
+        <div class="svd"><span class="svl">El bocado</span><div class="svn">Rústico → Terroso<br><em>→ Especiado → Profundo</em></div><p class="svds">La que pides cuando quieres algo de verdad. El champiñón huele a tierra mojada, el chorizo artesanal lo llena todo con ese calor especiado que reconforta, y la aceituna llega al final con un toque salino que lo redondea. Como una tarde de invierno en buena compañía.</p><div class="fa"><span class="fp fp-rus">Rústico</span><span class="fpa">→</span><span class="fp fp-ter">Terroso</span><span class="fpa">→</span><span class="fp fp-esp">Especiado</span><span class="fpa">→</span><span class="fp fp-adic">Adictivo</span></div></div>
+        <div class="spr"><div class="spp"><sup>$</sup>169</div><div class="sloc">Pizzería Artesanal<br> Sahagún, Hgo </div></div>
+      </div>
+
+      <!-- ★ 4 QUATTRO FORMAGGI -->
+      <div class="sc">
+        <div class="cc tl"></div><div class="cc tr"></div><div class="cc bl"></div><div class="cc br"></div>
+        <div class="se">Don Ciccio · Pizza IV</div>
+        <div class="sh">
+          <div class="sh-text">
+            <div class="sn">Quattro <em>Formaggi</em></div>
+            <div class="stg">El abrazo de los cuatro quesos.</div>
+          </div>
+          <div class="spw"><svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="120" cy="120" r="114" fill="#d49840"/>
+          <circle cx="68" cy="36" r="8" fill="#a07030" opacity=".4"/>
+          <circle cx="192" cy="52" r="6" fill="#a07030" opacity=".35"/>
+          <circle cx="210" cy="162" r="7" fill="#a07030" opacity=".35"/>
+          <circle cx="44" cy="178" r="6" fill="#a07030" opacity=".35"/>
+          <circle cx="120" cy="218" r="5" fill="#a07030" opacity=".3"/>
+          <circle cx="120" cy="120" r="96" fill="#e0c080"/>
+          <circle cx="120" cy="120" r="84" fill="#f0e8b0"/>
+          <path d="M120,120 L68,68 A74,74 0 0,1 120,46 Z" fill="#f8f4e8" opacity=".92"/>
+          <path d="M120,120 L120,46 A74,74 0 0,1 172,68 Z" fill="#e8a030" opacity=".75"/>
+          <path d="M120,120 L172,68 A74,74 0 0,1 172,172 Z" fill="#e0c840" opacity=".7"/>
+          <path d="M120,120 L172,172 A74,74 0 0,1 68,172 Z" fill="#f0e8d0" opacity=".85"/>
+          <path d="M120,120 L68,172 A74,74 0 0,1 68,68 Z" fill="#f8f4e8" opacity=".88"/>
+          <circle cx="95" cy="88" r="8" fill="#d4a020" opacity=".22"/>
+          <circle cx="148" cy="92" r="6" fill="#d4a020" opacity=".18"/>
+          <circle cx="155" cy="135" r="7" fill="#d4a020" opacity=".2"/>
+          <circle cx="100" cy="148" r="7" fill="#d4a020" opacity=".18"/>
+          <circle cx="120" cy="120" r="4" fill="#d4a020" opacity=".28"/>
+          <line x1="120" y1="46" x2="120" y2="120" stroke="#c8940a" stroke-width=".5" opacity=".2"/>
+          <line x1="172" y1="68" x2="120" y2="120" stroke="#c8940a" stroke-width=".5" opacity=".2"/>
+        </svg></div>
+        </div><!-- /sh -->
+        <div class="sdv">✦</div>
+        <div class="svd"><span class="svl">El bocado</span><div class="svn">Suave → Cremoso<br><em>→ Intenso → Adictivo</em></div><p class="svds">Cuatro quesos que decidieron ser amigos. El oaxaca estira sus hilos, el gouda se derrite dulce y caramelizado, el manchego pone carácter, y la mozzarella los abraza a todos. Cada mordida es un poco diferente a la anterior — y todas son buenas. De las que terminas y ya quieres otra.</p><div class="fa"><span class="fp fp-suav">Suave</span><span class="fpa">→</span><span class="fp fp-crem">Cremoso</span><span class="fpa">→</span><span class="fp fp-int">Intenso</span><span class="fpa">→</span><span class="fp fp-adic">Adictivo</span></div></div>
+        <div class="spr"><div class="spp"><sup>$</sup>159</div><div class="sloc">Pizzería Artesanal<br> Sahagún, Hgo</div></div>
+      </div>
+ <!-- ★ 5 MARGHERITA AL BASILICO -->
+<div class="sc">
+        <div class="cc tl"></div><div class="cc tr"></div><div class="cc bl"></div><div class="cc br"></div>
+        <div class="se">Don Ciccio · Pizza V</div>
+        <div class="sh">
+          <div class="sh-text">
+            <div class="sn">Margherita <em>al Basilico</em></div>
+            <div class="stg">El clásico que nunca falla.</div>
+          </div>
+          <div class="spw"><svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="120" cy="120" r="114" fill="#c8843a"/>
+          <circle cx="68" cy="36" r="8" fill="#1a0f00" opacity=".5"/>
+          <circle cx="192" cy="52" r="6" fill="#1a0f00" opacity=".45"/>
+          <circle cx="210" cy="162" r="7" fill="#1a0f00" opacity=".5"/>
+          <circle cx="44" cy="178" r="6" fill="#1a0f00" opacity=".45"/>
+          <circle cx="120" cy="218" r="5" fill="#1a0f00" opacity=".4"/>
+          <circle cx="120" cy="120" r="96" fill="#d49050"/>
+          <circle cx="120" cy="120" r="84" fill="#c03020"/>
+          <ellipse cx="103" cy="100" rx="20" ry="17" fill="#f8f4ea" opacity=".95"/>
+          <ellipse cx="140" cy="96" rx="17" ry="15" fill="#f5f0e8" opacity=".9"/>
+          <ellipse cx="152" cy="128" rx="18" ry="16" fill="#f8f4ea" opacity=".93"/>
+          <ellipse cx="130" cy="150" rx="16" ry="14" fill="#f5f0e8" opacity=".9"/>
+          <ellipse cx="96" cy="138" rx="17" ry="14" fill="#f8f4ea" opacity=".92"/>
+          <ellipse cx="118" cy="118" rx="13" ry="11" fill="#f5f0e8" opacity=".85"/>
+          <ellipse cx="103" cy="100" rx="20" ry="17" fill="none" stroke="#d4a020" stroke-width=".5" opacity=".35"/>
+          <ellipse cx="140" cy="96" rx="17" ry="15" fill="none" stroke="#d4a020" stroke-width=".5" opacity=".3"/>
+          <ellipse cx="122" cy="108" rx="9" ry="5.5" fill="#2a6a20" opacity=".85" transform="rotate(-25 122 108)"/>
+          <ellipse cx="145" cy="116" rx="8" ry="5" fill="#3a7a30" opacity=".8" transform="rotate(20 145 116)"/>
+          <ellipse cx="107" cy="130" rx="8.5" ry="5" fill="#2a6a20" opacity=".82" transform="rotate(-10 107 130)"/>
+          <ellipse cx="135" cy="140" rx="7.5" ry="4.5" fill="#3a7a30" opacity=".78" transform="rotate(30 135 140)"/>
+          <ellipse cx="112" cy="148" rx="8" ry="4.5" fill="#2a6a20" opacity=".8" transform="rotate(-15 112 148)"/>
+          <circle cx="130" cy="104" r="2.5" fill="#d4a020" opacity=".7"/>
+          <circle cx="155" cy="122" r="2" fill="#d4a020" opacity=".65"/>
+          <circle cx="100" cy="118" r="2" fill="#d4a020" opacity=".6"/>
+          <circle cx="138" cy="148" r="2.2" fill="#d4a020" opacity=".65"/>
+        </svg></div>
+        </div><!-- /sh -->
+        <div class="sdv">✦</div>
+        <div class="svd"><span class="svl">El bocado</span><div class="svn">Ácido → Cremoso<br><em>→ Limpio → Eterno</em></div><p class="svds">Tres ingredientes. Nada que esconder. El tomate llega vivo y brillante, la mozzarella lo recibe con calma, y el aceite de oliva lo cierra todo con una elegancia que no necesita palabras. La pizza más sencilla del menú — y la más honesta. Cuando sale bien, te recuerda por qué te gusta la pizza.</p><div class="fa"><span class="fp fp-acid">Ácido</span><span class="fpa">→</span><span class="fp fp-crem">Cremoso</span><span class="fpa">→</span><span class="fp fp-limp">Limpio</span><span class="fpa">→</span><span class="fp fp-suav">Eterno</span></div></div>
+        <div class="spr"><div class="spp"><sup>$</sup>139</div><div class="sloc">Pizzería Artesanal<br> Sahagún, Hgo </div></div>
+      </div>
+
+      <!-- ★ 6 SENZA FRONZOLI -->
+      <div class="sc">
+        <div class="cc tl"></div><div class="cc tr"></div><div class="cc bl"></div><div class="cc br"></div>
+        <div class="se">Don Ciccio · Pizza VI</div>
+        <div class="sh">
+          <div class="sh-text">
+            <div class="sn">Senza <em>Fronzoli</em></div>
+            <div class="stg">La pureza del buen ingrediente.</div>
+          </div>
+          <div class="spw"><svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="120" cy="120" r="114" fill="#c88840"/>
+          <circle cx="68" cy="36" r="8" fill="#a06020" opacity=".45"/>
+          <circle cx="192" cy="52" r="6" fill="#a06020" opacity=".4"/>
+          <circle cx="210" cy="162" r="7" fill="#a06020" opacity=".4"/>
+          <circle cx="44" cy="178" r="6" fill="#a06020" opacity=".4"/>
+          <circle cx="120" cy="218" r="5" fill="#a06020" opacity=".35"/>
+          <circle cx="120" cy="120" r="96" fill="#d4a060"/>
+          <circle cx="120" cy="120" r="84" fill="#f0e8c8"/>
+          <circle cx="120" cy="120" r="72" fill="#f5f0e0" opacity=".9"/>
+          <ellipse cx="108" cy="110" rx="22" ry="18" fill="#f8f4ea" opacity=".7"/>
+          <ellipse cx="134" cy="130" rx="20" ry="16" fill="#f8f4ea" opacity=".65"/>
+          <path d="M98,100 Q115,120 100,142" stroke="#e8e0c8" stroke-width="2.5" fill="none" opacity=".7"/>
+          <path d="M110,96 Q125,118 112,145" stroke="#e8e0c8" stroke-width="2" fill="none" opacity=".6"/>
+          <path d="M132,98 Q142,118 136,144" stroke="#e8e0c8" stroke-width="2.5" fill="none" opacity=".65"/>
+          <path d="M144,104 Q150,125 145,148" stroke="#e8e0c8" stroke-width="2" fill="none" opacity=".55"/>
+          <ellipse cx="104" cy="106" rx="14" ry="10" fill="#e8a090" opacity=".75" transform="rotate(-15 104 106)"/>
+          <ellipse cx="138" cy="104" rx="12" ry="9" fill="#e0908a" opacity=".7" transform="rotate(10 138 104)"/>
+          <ellipse cx="146" cy="134" rx="13" ry="9.5" fill="#e8a090" opacity=".72" transform="rotate(-8 146 134)"/>
+          <ellipse cx="104" cy="140" rx="12" ry="9" fill="#e0908a" opacity=".7" transform="rotate(12 104 140)"/>
+          <ellipse cx="122" cy="122" rx="9" ry="6" fill="none" stroke="#c8780a" stroke-width="2" opacity=".8"/>
+          <ellipse cx="122" cy="122" rx="5" ry="3.5" fill="none" stroke="#c8780a" stroke-width="1.5" opacity=".6"/>
+          <ellipse cx="106" cy="130" rx="7" ry="4.5" fill="none" stroke="#b06808" stroke-width="1.8" opacity=".75"/>
+          <ellipse cx="136" cy="118" rx="7" ry="4.5" fill="none" stroke="#c8780a" stroke-width="1.8" opacity=".7"/>
+        </svg></div>
+        </div><!-- /sh -->
+        <div class="sdv">✦</div>
+        <div class="svd"><span class="svl">El bocado</span><div class="svn">Honesto → Cremoso<br><em>→ Dulce → Satisfactorio</em></div><p class="svds">Hay pizzas que necesitan presentación. Esta no. El oaxaca se funde despacio y estira sin apuro, el jamón se hace notar con dignidad, y la cebolla asada trae ese dulzor profundo que solo da el fuego lento. Te la terminas, te recuestas, y estás bien. Así de simple.</p><div class="fa"><span class="fp fp-hon">Honesto</span><span class="fpa">→</span><span class="fp fp-crem">Cremoso</span><span class="fpa">→</span><span class="fp fp-dulc">Dulce</span><span class="fpa">→</span><span class="fp fp-adic">Satisfactorio</span></div></div>
+        <div class="spr"><div class="spp"><sup>$</sup>129</div><div class="sloc">Pizzería Artesanal<br> Sahagún, Hgo </div></div>
+      </div>
+
+    </div><!-- /dTrack -->
+    </div><!-- /dcar -->
+  </div>
+</div>
+
+<script>
+// ── MODO OSCURO / CLARO ──────────────────────────────────
+(function(){
+  const saved = localStorage.getItem('ciccio-theme');
+  const sys   = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  const theme = saved || sys;
+  document.documentElement.setAttribute('data-theme', theme);
+  updateThemeBtn(theme);
+})();
+
+function toggleTheme(){
+  const cur  = document.documentElement.getAttribute('data-theme') || 'light';
+  const next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('ciccio-theme', next);
+  updateThemeBtn(next);
+}
+
+function updateThemeBtn(theme){
+  const btn = document.getElementById('themeBtn');
+  if(btn) btn.textContent = theme === 'dark' ? '☀' : '☽';
+}
+
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+  if(!localStorage.getItem('ciccio-theme')){
+    const t = e.matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', t);
+    updateThemeBtn(t);
+  }
+});
+// ─────────────────────────────────────────────────────────
+
+function showV(v){
+  document.querySelectorAll('.view').forEach(e=>e.classList.remove('active'));
+  document.querySelectorAll('.nb').forEach(e=>e.classList.remove('active'));
+  document.getElementById('view-'+v).classList.add('active');
+  document.getElementById('btn-'+v).classList.add('active');
+}
+
+// Descubre carousel — circular + animated
+let cD = 0, tD = 6, animD = false;
+const sCards = document.querySelectorAll('.sc');
+
+function updCtrl() {
+  const n = String(cD + 1).padStart(2, '0');
+  const t = String(tD).padStart(2, '0');
+  document.getElementById('dCtr').textContent  = n + ' / ' + t;
+  document.getElementById('dTrkF').style.width = ((cD + 1) / tD * 100) + '%';
+}
+
+function goD(i, dir) {
+  if (animD) return;
+  i = ((i % tD) + tD) % tD;
+  if (i === cD) return;
+  animD = true;
+
+  if (dir === undefined) {
+    const diff = i - cD;
+    dir = (diff > 0 && diff <= tD / 2) || diff < -tD / 2 ? 1 : -1;
+  }
+
+  const prev = sCards[cD];
+  const next = sCards[i];
+  cD = i;
+  updCtrl();
+
+  // Prepare incoming: offset, absolute, invisible
+  next.style.cssText = `display:flex;position:absolute;top:0;left:0;width:100%;opacity:0;transform:translateX(${dir * 18}px);transition:none`;
+
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    // Outgoing: fade + slight push
+    prev.style.cssText = `display:flex;position:relative;opacity:0;transform:translateX(${-dir * 18}px);transition:opacity .2s cubic-bezier(.25,.46,.45,.94),transform .2s cubic-bezier(.25,.46,.45,.94)`;
+    // Incoming: settle in
+    next.style.cssText = `display:flex;position:absolute;top:0;left:0;width:100%;opacity:1;transform:translateX(0);transition:opacity .21s cubic-bezier(.25,.46,.45,.94),transform .21s cubic-bezier(.25,.46,.45,.94)`;
+
+    setTimeout(() => {
+      prev.style.cssText = '';
+      prev.classList.remove('active');
+      next.style.cssText = '';
+      next.classList.add('active');
+      animD = false;
+    }, 230);
+  }));
+
+  sCards[cD].scrollTop = 0;
+}
+
+function navD(d) { goD(cD + d, d > 0 ? 1 : -1); }
+
+let txD = 0;
+document.getElementById('dTrack').addEventListener('touchstart', e => { txD = e.touches[0].clientX; }, { passive: true });
+document.getElementById('dTrack').addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - txD;
+  if (Math.abs(dx) > 80) navD(dx < 0 ? 1 : -1);
+});
+</script>
+</body>
+</html>
